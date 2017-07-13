@@ -3,16 +3,27 @@
 session_start();
 
 require __DIR__ . '/../vendor/autoload.php';
-
+        
 $app = new \Slim\App([
     'settings' => [
         'displayErrorDetails' => true,
         'db' => [
             'driver' => 'mysql',
             'host' => 'localhost',
-            'database' => 'kedai_emas',
+            'database' => 'yahya',
             'username' => 'root',
             'password' => '',
+            'charset' => 'utf8',
+            'collation' => 'utf8_unicode_ci']
+    ],
+    'settings_prod' => [
+        'displayErrorDetails' => true,
+        'db' => [
+            'driver' => 'mysql',
+            'host' => 'localhost',
+            'database' => 'onewoork_kedaiemas',
+            'username' => 'onewoork',
+            'password' => 'iwang31@lydia26@2013',
             'charset' => 'utf8',
             'collation' => 'utf8_unicode_ci']
     ]
@@ -63,6 +74,10 @@ $container['PermintaanController'] = function($container){
 
 $container['PromosiController'] = function($container){
     return new \App\Controllers\PromosiController($container);
+};
+
+$container['YahyaController'] = function($container){
+    return new \App\Controllers\YahyaController($container);
 };
 
 require __DIR__ . '/../app/routes.php';
